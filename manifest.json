@@ -1,0 +1,19 @@
+{
+  "Name": "> __SomaCore",
+  "Author": "somaraezel",
+  "Version": "1.0.0",
+  "Description": "Add Features for modders.",
+  "UniqueID": "somaraezel.__SomaCore",
+  "EntryDll": "__SomaCore.dll",
+  "UpdateKeys": [ "Nexus: ???" ],
+  "Dependencies": [
+    {
+      "UniqueID": "SuperAardvark.AntiSocial",
+      "IsRequired": true
+    },
+    {
+      "UniqueID": "somaraezel.CPSomaCoreData",
+      "IsRequired": true
+    }
+  ]
+}
