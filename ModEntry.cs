@@ -4,6 +4,7 @@ using __SomaCore.TileSheets;
 using __SomaCore.TileProperties;
 using StardewValley;
 using __SomaCore.Flags;
+using __SomaCore.ModConfigs;
 
 namespace __SomaCore
 {
@@ -11,7 +12,10 @@ namespace __SomaCore
     {
         internal static IModHelper ModHelper;
         internal static IMonitor ModMonitor;
+        internal static IManifest Manifest;
+        internal static ModConfig Config = new();
         internal static Harmony harmony;
+        internal static SetGMCMMenu setGMCM = new();
         internal static TileSheetManager tileSheets = new();
         internal static TilePropertiesManager tileProperties = new();
         internal static FlagsManager flags = new();
@@ -22,7 +26,10 @@ namespace __SomaCore
             ModMonitor = Monitor;
             harmony = new(helper.ModRegistry.ModID);
 
+            helper.Events.GameLoop.GameLaunched += setGMCM.OnGameLaunched_InicializeGMCM;
+
             helper.Events.Content.AssetRequested += tileSheets.OnAssetRequested_ConfigPlantsTilesheets;
+            helper.Events.Content.AssetRequested += tileSheets.OnAssetRequested_ConfigInteriorsTilesheets;
             helper.Events.GameLoop.DayStarted += tileSheets.OnDayStarted_ReloadTilesheets;
 
             helper.Events.Input.ButtonPressed += tileProperties.OnButtonPressed_CheckTileProperty;

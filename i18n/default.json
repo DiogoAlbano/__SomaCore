@@ -1,0 +1,8 @@
+{
+  // Mod Options
+  "GMCM_TileSheetPage_Title": "Cenários",
+  "GMCM_TileSheetPage_Description": "Configurar a aparência dos elementos gráficos dos cenários.",
+  "GMCM_TileSheetPage_Paragraph_Warning": "Atenção! As configurações só serão aplicadas quando você recarregar seu save!",
+  "GMCM_TileSheetPage_OptionName_OriginalWallpaper": "Papéis de Parede Originais",
+  "GMCM_TileSheetPage_OptionDescription_OriginalWallpaper": "Mantêr a aparência dos papéis de parede originais caso use algum mod que mude a aparência dos papéis de Parede."
+}

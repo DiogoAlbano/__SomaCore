@@ -11,7 +11,6 @@
 
   <ItemGroup>
     <Folder Include="assets\" />
-    <Folder Include="i18n\" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
