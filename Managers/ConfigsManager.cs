@@ -6,7 +6,7 @@ using StardewModdingAPI.Events;
 using StardewModdingAPI.Utilities;
 using StardewValley;
 
-namespace __SomaCore.ModConfigs
+namespace __SomaCore.Managers
 {
     public interface IGenericModConfigMenuApi        
     {

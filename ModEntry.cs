@@ -1,10 +1,7 @@
 ﻿using StardewModdingAPI;
 using HarmonyLib;
-using __SomaCore.TileSheets;
-using __SomaCore.TileProperties;
 using StardewValley;
-using __SomaCore.Flags;
-using __SomaCore.ModConfigs;
+using __SomaCore.Managers;
 
 namespace __SomaCore
 {
@@ -16,9 +13,9 @@ namespace __SomaCore
         internal static ModConfig Config = new();
         internal static Harmony harmony;
         internal static SetGMCMMenu setGMCM = new();
-        internal static TileSheetManager tileSheets = new();
-        internal static TilePropertiesManager tileProperties = new();
-        internal static FlagsManager flags = new();
+        internal static TileSheetManager tileSheetsManager = new();
+        internal static FlagsManager flagsManager = new();
+        internal static TilePropertyManager tilePropertyManager = new();
 
         public override void Entry(IModHelper helper)
         {
@@ -28,16 +25,16 @@ namespace __SomaCore
 
             helper.Events.GameLoop.GameLaunched += setGMCM.OnGameLaunched_InicializeGMCM;
 
-            helper.Events.Content.AssetRequested += tileSheets.OnAssetRequested_ConfigPlantsTilesheets;
-            helper.Events.Content.AssetRequested += tileSheets.OnAssetRequested_ConfigInteriorsTilesheets;
-            helper.Events.GameLoop.DayStarted += tileSheets.OnDayStarted_ReloadTilesheets;
+            helper.Events.Content.AssetRequested += tileSheetsManager.OnAssetRequested_ConfigPlantsTilesheets;
+            helper.Events.Content.AssetRequested += tileSheetsManager.OnAssetRequested_ConfigInteriorsTilesheets;
+            helper.Events.GameLoop.DayStarted += tileSheetsManager.OnDayStarted_ReloadTilesheets;
 
-            helper.Events.Input.ButtonPressed += tileProperties.OnButtonPressed_CheckTileProperty;
-            helper.Events.GameLoop.UpdateTicking += tileProperties.OnUpdateTicking_CheckLocationRequested;
-            helper.Events.Display.MenuChanged += tileProperties.OnDisplayMenuChanged_RemoveShopOwnerPortrait;
+            helper.Events.Content.AssetRequested += flagsManager.OnAssetRequested_CreateFlags;
+            helper.Events.GameLoop.DayStarted += flagsManager.OnDayStarted_SetFlagsAndEvents;
 
-            helper.Events.Content.AssetRequested += flags.OnAssetRequested_CreateFlags;
-            helper.Events.GameLoop.DayStarted += flags.OnDayStarted_SetFlagsAndEvents;
+            helper.Events.Input.ButtonPressed += tilePropertyManager.OnButtonPressed_CheckTileProperty;
+            helper.Events.GameLoop.UpdateTicking += tilePropertyManager.OnUpdateTicking_CheckLocationRequested;
+            helper.Events.Display.MenuChanged += tilePropertyManager.OnDisplayMenuChanged_RemoveShopOwnerPortrait;
 
             helper.ConsoleCommands.Add("test", "teleport", WarpTestRoom);
             helper.ConsoleCommands.Add("npc", "teleport", WarpNPCRoom);

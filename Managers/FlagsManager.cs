@@ -4,7 +4,7 @@ using StardewValley.Locations;
 using System;
 using System.Collections.Generic;
 
-namespace __SomaCore.Flags
+namespace __SomaCore.Managers
 {
     public class FlagsManager
     {
@@ -50,10 +50,6 @@ namespace __SomaCore.Flags
         }
         internal void OnDayStarted_SetFlagsAndEvents(object sender, DayStartedEventArgs e)
         {
-            if (!Utility.doesAnyFarmerHaveOrWillReceiveMail("nmTreesCured"))//remover depois
-            {
-                Game1.addMailForTomorrow("nmTreesCured", true);
-            }
             if (Utility.doesAnyFarmerHaveMail("nmTreesCured") && !Utility.doesAnyFarmerHaveOrWillReceiveMail("nmTreeGrowCounter_28"))
             {
                 if (!Utility.doesAnyFarmerHaveMail("nmTreeGrowCounter_1"))
