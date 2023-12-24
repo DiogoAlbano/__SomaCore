@@ -1,183 +1,22 @@
-﻿using HarmonyLib;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework.Graphics;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
-using System.Reflection;
-using xTile;
+
 using Rectangle = Microsoft.Xna.Framework.Rectangle;
 
 namespace __SomaCore.Managers
 {
     public class TileSheetManager
     {
-        internal void OnAssetRequested_ConfigPlantsTilesheets(object sender, AssetRequestedEventArgs e)
+        internal void OnAssetRequested_ConfigDinamicCropsTilesheets(object sender, AssetRequestedEventArgs e)
         {
-            if (e.NameWithoutLocale.IsEquivalentTo("Maps/_sc_dinamic_plants"))
+            if (e.NameWithoutLocale.IsEquivalentTo("Maps/_sc_dinamic_crops"))
             {
                 e.Edit(asset =>
                 {
                     var editor = asset.AsImage();
                     Texture2D source;
-                    //Vanilla Trees
-                    source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/" + Game1.currentSeason +  "_outdoorsTileSheet");
-                    editor.PatchImage(source, sourceArea: new Rectangle(256, 0, 96, 64), targetArea: new Rectangle(0, 816, 96, 64), patchMode: PatchMode.Replace);
-                    editor.PatchImage(source, sourceArea: new Rectangle(288, 64, 32, 48), targetArea: new Rectangle(32, 880, 32, 48), patchMode: PatchMode.Replace);
-                    editor.PatchImage(source, sourceArea: new Rectangle(96, 0, 64, 64), targetArea: new Rectangle(0, 928, 64, 64), patchMode: PatchMode.Replace);
-                    editor.PatchImage(source, sourceArea: new Rectangle(112, 64, 33, 48), targetArea: new Rectangle(16, 992, 33, 48), patchMode: PatchMode.Replace);
-
-                    source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/" + Game1.currentSeason + "_town");
-                    editor.PatchImage(source, sourceArea: new Rectangle(224, 384, 64, 80), targetArea: new Rectangle(0, 1040, 64, 80), patchMode: PatchMode.Replace);
-                    editor.PatchImage(source, sourceArea: new Rectangle(240, 464, 32, 32), targetArea: new Rectangle(16, 1120, 32, 32), patchMode: PatchMode.Replace);
-
-                    source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/" + Game1.currentSeason + "_island_tilesheet_1");
-                    editor.PatchImage(source, sourceArea: new Rectangle(320, 384, 96, 80), targetArea: new Rectangle(0, 1152, 96, 80), patchMode: PatchMode.Replace);
-                    editor.PatchImage(source, sourceArea: new Rectangle(352, 464, 32, 32), targetArea: new Rectangle(32, 1232, 32, 32), patchMode: PatchMode.Replace);
-                    //Dicease Trees
-                    if (!Utility.doesAnyFarmerHaveMail("nmTreesCured"))
-                    {
-                        // Fruit Trees
-                        source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/_sc_blank_tilesheet");
-                        editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 720), targetArea: new Rectangle(144, 96, 48, 720), patchMode: PatchMode.Replace);
-                        source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TileSheets/fruitTrees");
-                        editor.PatchImage(source, sourceArea: new Rectangle(384, 16, 48, 64), targetArea: new Rectangle(144, 112, 48, 64), patchMode: PatchMode.Replace);
-                        editor.PatchImage(source, sourceArea: new Rectangle(384, 96, 48, 64), targetArea: new Rectangle(144, 192, 48, 64), patchMode: PatchMode.Replace);
-                        editor.PatchImage(source, sourceArea: new Rectangle(384, 176, 48, 64), targetArea: new Rectangle(144, 272, 48, 64), patchMode: PatchMode.Replace);
-                        editor.PatchImage(source, sourceArea: new Rectangle(384, 256, 48, 64), targetArea: new Rectangle(144, 352, 48, 64), patchMode: PatchMode.Replace);
-                        editor.PatchImage(source, sourceArea: new Rectangle(384, 336, 48, 64), targetArea: new Rectangle(144, 432, 48, 64), patchMode: PatchMode.Replace);
-                        editor.PatchImage(source, sourceArea: new Rectangle(384, 416, 48, 64), targetArea: new Rectangle(144, 512, 48, 64), patchMode: PatchMode.Replace);
-                        editor.PatchImage(source, sourceArea: new Rectangle(384, 496, 48, 64), targetArea: new Rectangle(144, 592, 48, 64), patchMode: PatchMode.Replace);
-                        editor.PatchImage(source, sourceArea: new Rectangle(384, 576, 48, 64), targetArea: new Rectangle(144, 672, 48, 64), patchMode: PatchMode.Replace);
-                        editor.PatchImage(source, sourceArea: new Rectangle(384, 656, 48, 64), targetArea: new Rectangle(144, 752, 48, 64), patchMode: PatchMode.Replace);
-                        //Tree 1
-                        source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/_sc_blank_tilesheet");
-                        editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(192, 96, 48, 96), patchMode: PatchMode.Replace);
-                        source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TerrainFeatures/tree1_spring");
-                        editor.PatchImage(source, sourceArea: new Rectangle(32, 96, 16, 32), targetArea: new Rectangle(208, 160, 16, 32), patchMode: PatchMode.Replace);
-                        //Tree2
-                        source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/_sc_blank_tilesheet");
-                        editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(192, 192, 48, 96), patchMode: PatchMode.Replace);
-                        source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TerrainFeatures/tree2_spring");
-                        editor.PatchImage(source, sourceArea: new Rectangle(32, 96, 16, 32), targetArea: new Rectangle(208, 256, 16, 32), patchMode: PatchMode.Replace);
-                        //Tree 3
-                        source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/_sc_blank_tilesheet");
-                        editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(192, 288, 48, 96), patchMode: PatchMode.Replace);
-                        source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TerrainFeatures/tree3_spring");
-                        editor.PatchImage(source, sourceArea: new Rectangle(32, 96, 16, 32), targetArea: new Rectangle(208, 352, 16, 32), patchMode: PatchMode.Replace);
-                        //Tree 8
-                        source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/_sc_blank_tilesheet");
-                        editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(192, 384, 48, 96), patchMode: PatchMode.Replace);
-                        source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TerrainFeatures/tree8_spring");
-                        editor.PatchImage(source, sourceArea: new Rectangle(32, 96, 16, 32), targetArea: new Rectangle(208, 448, 16, 32), patchMode: PatchMode.Replace);
-                    }
-                    //Grow Cicle
-                    else
-                    {
-                        if (!Utility.doesAnyFarmerHaveMail("nmTreeGrowCounter_1"))
-                        {
-                            // Fruit Trees
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TileSheets/fruitTrees");
-                            editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 720), targetArea: new Rectangle(144, 96, 48, 720), patchMode: PatchMode.Replace);
-                            //Tree 1 
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/_sc_blank_tilesheet");
-                            editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(192, 96, 48, 96), patchMode: PatchMode.Replace);
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TerrainFeatures/tree1_spring");
-                            editor.PatchImage(source, sourceArea: new Rectangle(32, 128, 16, 16), targetArea: new Rectangle(208, 176, 16, 16), patchMode: PatchMode.Replace);
-                            //Tree2
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/_sc_blank_tilesheet");
-                            editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(192, 192, 48, 96), patchMode: PatchMode.Replace);
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TerrainFeatures/tree2_spring");
-                            editor.PatchImage(source, sourceArea: new Rectangle(32, 128, 16, 16), targetArea: new Rectangle(208, 272, 16, 16), patchMode: PatchMode.Replace);
-                            //Tree 3
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/_sc_blank_tilesheet");
-                            editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(192, 288, 48, 96), patchMode: PatchMode.Replace);
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TerrainFeatures/tree3_spring");
-                            editor.PatchImage(source, sourceArea: new Rectangle(32, 128, 16, 16), targetArea: new Rectangle(208, 368, 16, 16), patchMode: PatchMode.Replace);
-                            //Tree 8
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/_sc_blank_tilesheet");
-                            editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(192, 384, 48, 96), patchMode: PatchMode.Replace);
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TerrainFeatures/tree8_spring");
-                            editor.PatchImage(source, sourceArea: new Rectangle(32, 128, 16, 16), targetArea: new Rectangle(208, 464, 16, 16), patchMode: PatchMode.Replace);
-                        }
-                        else if (!Utility.doesAnyFarmerHaveMail("nmTreeGrowCounter_2"))
-                        {
-                            // Fruit Trees
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TileSheets/fruitTrees");
-                            editor.PatchImage(source, sourceArea: new Rectangle(48, 0, 48, 720), targetArea: new Rectangle(144, 96, 48, 720), patchMode: PatchMode.Replace);
-                            //Tree 1 
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/_sc_blank_tilesheet");
-                            editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(192, 96, 48, 96), patchMode: PatchMode.Replace);
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TerrainFeatures/tree1_spring");
-                            editor.PatchImage(source, sourceArea: new Rectangle(0, 128, 16, 16), targetArea: new Rectangle(208, 176, 16, 16), patchMode: PatchMode.Replace);
-                            //Tree2
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/_sc_blank_tilesheet");
-                            editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(192, 192, 48, 96), patchMode: PatchMode.Replace);
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TerrainFeatures/tree2_spring");
-                            editor.PatchImage(source, sourceArea: new Rectangle(0, 128, 16, 16), targetArea: new Rectangle(208, 272, 16, 16), patchMode: PatchMode.Replace);
-                            //Tree 3
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/_sc_blank_tilesheet");
-                            editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(192, 288, 48, 96), patchMode: PatchMode.Replace);
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TerrainFeatures/tree3_spring");
-                            editor.PatchImage(source, sourceArea: new Rectangle(0, 128, 16, 16), targetArea: new Rectangle(208, 368, 16, 16), patchMode: PatchMode.Replace);
-                            //Tree 8
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/_sc_blank_tilesheet");
-                            editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(192, 384, 48, 96), patchMode: PatchMode.Replace);
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TerrainFeatures/tree8_spring");
-                            editor.PatchImage(source, sourceArea: new Rectangle(0, 128, 16, 16), targetArea: new Rectangle(208, 464, 16, 16), patchMode: PatchMode.Replace);
-                        }
-                        else if (!Utility.doesAnyFarmerHaveMail("nmTreeGrowCounter_3"))
-                        {
-                            // Fruit Trees
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TileSheets/fruitTrees");
-                            editor.PatchImage(source, sourceArea: new Rectangle(96, 0, 48, 720), targetArea: new Rectangle(144, 96, 48, 720), patchMode: PatchMode.Replace);
-                            //Tree 1 
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/_sc_blank_tilesheet");
-                            editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(192, 96, 48, 96), patchMode: PatchMode.Replace);
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TerrainFeatures/tree1_spring");
-                            editor.PatchImage(source, sourceArea: new Rectangle(16, 128, 16, 16), targetArea: new Rectangle(208, 176, 16, 16), patchMode: PatchMode.Replace);
-                            //Tree2
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/_sc_blank_tilesheet");
-                            editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(192, 192, 48, 96), patchMode: PatchMode.Replace);
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TerrainFeatures/tree2_spring");
-                            editor.PatchImage(source, sourceArea: new Rectangle(16, 128, 16, 16), targetArea: new Rectangle(208, 272, 16, 16), patchMode: PatchMode.Replace);
-                            //Tree 3
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/_sc_blank_tilesheet");
-                            editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(192, 288, 48, 96), patchMode: PatchMode.Replace);
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TerrainFeatures/tree3_spring");
-                            editor.PatchImage(source, sourceArea: new Rectangle(16, 128, 16, 16), targetArea: new Rectangle(208, 368, 16, 16), patchMode: PatchMode.Replace);
-                            //Tree 8
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/_sc_blank_tilesheet");
-                            editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(192, 384, 48, 96), patchMode: PatchMode.Replace);
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TerrainFeatures/tree8_spring");
-                            editor.PatchImage(source, sourceArea: new Rectangle(16, 128, 16, 16), targetArea: new Rectangle(208, 464, 16, 16), patchMode: PatchMode.Replace);
-                        }
-                        else if (!Utility.doesAnyFarmerHaveMail("nmTreeGrowCounter_4"))
-                        {
-                            // Fruit Trees
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TileSheets/fruitTrees");
-                            editor.PatchImage(source, sourceArea: new Rectangle(144, 0, 48, 720), targetArea: new Rectangle(144, 96, 48, 720), patchMode: PatchMode.Replace);
-                            //Tree 1 
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/_sc_blank_tilesheet");
-                            editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(192, 96, 48, 96), patchMode: PatchMode.Replace);
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TerrainFeatures/tree1_spring");
-                            editor.PatchImage(source, sourceArea: new Rectangle(0, 96, 16, 32), targetArea: new Rectangle(208, 160, 16, 32), patchMode: PatchMode.Replace);
-                            //Tree2
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/_sc_blank_tilesheet");
-                            editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(192, 192, 48, 96), patchMode: PatchMode.Replace);
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TerrainFeatures/tree2_spring");
-                            editor.PatchImage(source, sourceArea: new Rectangle(0, 96, 16, 32), targetArea: new Rectangle(208, 256, 16, 32), patchMode: PatchMode.Replace);
-                            //Tree 3
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/_sc_blank_tilesheet");
-                            editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(192, 288, 48, 96), patchMode: PatchMode.Replace);
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TerrainFeatures/tree3_spring");
-                            editor.PatchImage(source, sourceArea: new Rectangle(0, 96, 16, 32), targetArea: new Rectangle(208, 352, 16, 32), patchMode: PatchMode.Replace);
-                            //Tree 8
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/_sc_blank_tilesheet");
-                            editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(192, 384, 48, 96), patchMode: PatchMode.Replace);
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TerrainFeatures/tree8_spring");
-                            editor.PatchImage(source, sourceArea: new Rectangle(0, 96, 16, 32), targetArea: new Rectangle(208, 448, 16, 32), patchMode: PatchMode.Replace);
-                        }
-                    }
                     if (Game1.currentSeason.Equals("spring"))
                     {
                         source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TileSheets/crops");//TerrainFeatures/Flooring
@@ -746,64 +585,6 @@ namespace __SomaCore.Managers
                             editor.PatchImage(source, sourceArea: new Rectangle(128, 192, 16, 16), targetArea: new Rectangle(192, 0, 16, 16), patchMode: PatchMode.Replace);
                             editor.PatchImage(source, sourceArea: new Rectangle(128, 64, 16, 16), targetArea: new Rectangle(192, 16, 16, 16), patchMode: PatchMode.Replace);
                         }
-                        // Static Fruit Trees
-                        source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TileSheets/fruitTrees");
-                        editor.PatchImage(source, sourceArea: new Rectangle(192, 0, 48, 720), targetArea: new Rectangle(0, 96, 48, 720), patchMode: PatchMode.Replace);
-                        //Static Tree 1
-                        source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/_sc_blank_tilesheet");
-                        editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(48, 96, 48, 96), patchMode: PatchMode.Replace);
-                        source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TerrainFeatures/tree1_spring");
-                        editor.PatchImage(source, sourceArea: new Rectangle(32, 96, 16, 32), targetArea: new Rectangle(64, 160, 16, 32), patchMode: PatchMode.Replace);
-                        editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(48, 96, 48, 96), patchMode: PatchMode.Overlay);
-                        //Static Tree 2
-                        source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/_sc_blank_tilesheet");
-                        editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(48, 192, 48, 96), patchMode: PatchMode.Replace);
-                        source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TerrainFeatures/tree2_spring");
-                        editor.PatchImage(source, sourceArea: new Rectangle(32, 96, 16, 32), targetArea: new Rectangle(64, 256, 16, 32), patchMode: PatchMode.Replace);
-                        editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(48, 192, 48, 96), patchMode: PatchMode.Overlay);
-                        //Static Tree 3
-                        source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/_sc_blank_tilesheet");
-                        editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(48, 288, 48, 96), patchMode: PatchMode.Replace);
-                        source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TerrainFeatures/tree3_spring");
-                        editor.PatchImage(source, sourceArea: new Rectangle(32, 96, 16, 32), targetArea: new Rectangle(64, 352, 16, 32), patchMode: PatchMode.Replace);
-                        editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(48, 288, 48, 96), patchMode: PatchMode.Overlay);
-                        //Static Tree 8
-                        source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/_sc_blank_tilesheet");
-                        editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(48, 384, 48, 96), patchMode: PatchMode.Replace);
-                        source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TerrainFeatures/tree8_spring");
-                        editor.PatchImage(source, sourceArea: new Rectangle(32, 96, 16, 32), targetArea: new Rectangle(64, 448, 16, 32), patchMode: PatchMode.Replace);
-                        editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(48, 384, 48, 96), patchMode: PatchMode.Overlay);
-                        //Dinamic Trees
-                        if (Utility.doesAnyFarmerHaveMail("nmTreeGrowCounter_4"))
-                        {
-                            // Fruit Trees
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TileSheets/fruitTrees");
-                            editor.PatchImage(source, sourceArea: new Rectangle(192, 0, 48, 720), targetArea: new Rectangle(144, 96, 48, 720), patchMode: PatchMode.Replace);
-                            //Tree 1 
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/_sc_blank_tilesheet");
-                            editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(192, 96, 48, 96), patchMode: PatchMode.Replace);
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TerrainFeatures/tree1_spring");
-                            editor.PatchImage(source, sourceArea: new Rectangle(32, 96, 16, 32), targetArea: new Rectangle(208, 160, 16, 32), patchMode: PatchMode.Replace);
-                            editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(192, 96, 48, 96), patchMode: PatchMode.Overlay);
-                            //Tree2
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/_sc_blank_tilesheet");
-                            editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(192, 192, 48, 96), patchMode: PatchMode.Replace);
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TerrainFeatures/tree2_spring");
-                            editor.PatchImage(source, sourceArea: new Rectangle(32, 96, 16, 32), targetArea: new Rectangle(208, 256, 16, 32), patchMode: PatchMode.Replace);
-                            editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(192, 192, 48, 96), patchMode: PatchMode.Overlay);
-                            //Tree 3
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/_sc_blank_tilesheet");
-                            editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(192, 288, 48, 96), patchMode: PatchMode.Replace);
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TerrainFeatures/tree3_spring");
-                            editor.PatchImage(source, sourceArea: new Rectangle(32, 96, 16, 32), targetArea: new Rectangle(208, 352, 16, 32), patchMode: PatchMode.Replace);
-                            editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(192, 288, 48, 96), patchMode: PatchMode.Overlay);
-                            //Tree 8
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/_sc_blank_tilesheet");
-                            editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(192, 384, 48, 96), patchMode: PatchMode.Replace);
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TerrainFeatures/tree8_spring");
-                            editor.PatchImage(source, sourceArea: new Rectangle(32, 96, 16, 32), targetArea: new Rectangle(208, 448, 16, 32), patchMode: PatchMode.Replace);
-                            editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(192, 384, 48, 96), patchMode: PatchMode.Overlay);
-                        }
                     }
                     if (Game1.currentSeason.Equals("summer"))
                     {
@@ -1307,64 +1088,6 @@ namespace __SomaCore.Managers
                             editor.PatchImage(source, sourceArea: new Rectangle(128, 192, 16, 16), targetArea: new Rectangle(192, 0, 16, 16), patchMode: PatchMode.Replace);
                             editor.PatchImage(source, sourceArea: new Rectangle(128, 64, 16, 16), targetArea: new Rectangle(192, 16, 16, 16), patchMode: PatchMode.Replace);
                         }
-                        // Static Fruit Trees
-                        source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TileSheets/fruitTrees");
-                        editor.PatchImage(source, sourceArea: new Rectangle(240, 0, 48, 720), targetArea: new Rectangle(0, 96, 48, 720), patchMode: PatchMode.Replace);
-                        //Static Tree 1
-                        source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/_sc_blank_tilesheet");
-                        editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(48, 96, 48, 96), patchMode: PatchMode.Replace);
-                        source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TerrainFeatures/tree1_summer");
-                        editor.PatchImage(source, sourceArea: new Rectangle(32, 96, 16, 32), targetArea: new Rectangle(64, 160, 16, 32), patchMode: PatchMode.Replace);
-                        editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(48, 96, 48, 96), patchMode: PatchMode.Overlay);
-                        //Static Tree 2
-                        source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/_sc_blank_tilesheet");
-                        editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(48, 192, 48, 96), patchMode: PatchMode.Replace);
-                        source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TerrainFeatures/tree2_summer");
-                        editor.PatchImage(source, sourceArea: new Rectangle(32, 96, 16, 32), targetArea: new Rectangle(64, 256, 16, 32), patchMode: PatchMode.Replace);
-                        editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(48, 192, 48, 96), patchMode: PatchMode.Overlay);
-                        //Static Tree 3
-                        source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/_sc_blank_tilesheet");
-                        editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(48, 288, 48, 96), patchMode: PatchMode.Replace);
-                        source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TerrainFeatures/tree3_spring");
-                        editor.PatchImage(source, sourceArea: new Rectangle(32, 96, 16, 32), targetArea: new Rectangle(64, 352, 16, 32), patchMode: PatchMode.Replace);
-                        editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(48, 288, 48, 96), patchMode: PatchMode.Overlay);
-                        //Static Tree 8
-                        source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/_sc_blank_tilesheet");
-                        editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(48, 384, 48, 96), patchMode: PatchMode.Replace);
-                        source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TerrainFeatures/tree8_summer");
-                        editor.PatchImage(source, sourceArea: new Rectangle(32, 96, 16, 32), targetArea: new Rectangle(64, 448, 16, 32), patchMode: PatchMode.Replace);
-                        editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(48, 384, 48, 96), patchMode: PatchMode.Overlay);
-                        //Dinamic Trees
-                        if (Utility.doesAnyFarmerHaveMail("nmTreeGrowCounter_4"))
-                        {
-                            // Fruit Trees
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TileSheets/fruitTrees");
-                            editor.PatchImage(source, sourceArea: new Rectangle(240, 0, 48, 720), targetArea: new Rectangle(144, 96, 48, 720), patchMode: PatchMode.Replace);
-                            //Tree 1 
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/_sc_blank_tilesheet");
-                            editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(192, 96, 48, 96), patchMode: PatchMode.Replace);
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TerrainFeatures/tree1_summer");
-                            editor.PatchImage(source, sourceArea: new Rectangle(32, 96, 16, 32), targetArea: new Rectangle(208, 160, 16, 32), patchMode: PatchMode.Replace);
-                            editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(192, 96, 48, 96), patchMode: PatchMode.Overlay);
-                            //Tree2
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/_sc_blank_tilesheet");
-                            editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(192, 192, 48, 96), patchMode: PatchMode.Replace);
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TerrainFeatures/tree2_summer");
-                            editor.PatchImage(source, sourceArea: new Rectangle(32, 96, 16, 32), targetArea: new Rectangle(208, 256, 16, 32), patchMode: PatchMode.Replace);
-                            editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(192, 192, 48, 96), patchMode: PatchMode.Overlay);
-                            //Tree 3
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/_sc_blank_tilesheet");
-                            editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(192, 288, 48, 96), patchMode: PatchMode.Replace);
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TerrainFeatures/tree3_spring");
-                            editor.PatchImage(source, sourceArea: new Rectangle(32, 96, 16, 32), targetArea: new Rectangle(208, 352, 16, 32), patchMode: PatchMode.Replace);
-                            editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(192, 288, 48, 96), patchMode: PatchMode.Overlay);
-                            //Tree 8
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/_sc_blank_tilesheet");
-                            editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(192, 384, 48, 96), patchMode: PatchMode.Replace);
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TerrainFeatures/tree8_summer");
-                            editor.PatchImage(source, sourceArea: new Rectangle(32, 96, 16, 32), targetArea: new Rectangle(208, 448, 16, 32), patchMode: PatchMode.Replace);
-                            editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(192, 384, 48, 96), patchMode: PatchMode.Overlay);
-                        }
                     }
                     if (Game1.currentSeason.Equals("fall"))
                     {
@@ -1867,64 +1590,6 @@ namespace __SomaCore.Managers
                             editor.PatchImage(source, sourceArea: new Rectangle(128, 192, 16, 16), targetArea: new Rectangle(192, 0, 16, 16), patchMode: PatchMode.Replace);
                             editor.PatchImage(source, sourceArea: new Rectangle(128, 64, 16, 16), targetArea: new Rectangle(192, 16, 16, 16), patchMode: PatchMode.Replace);
                         }
-                        // Static Fruit Trees
-                        source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TileSheets/fruitTrees");
-                        editor.PatchImage(source, sourceArea: new Rectangle(288, 0, 48, 720), targetArea: new Rectangle(0, 96, 48, 720), patchMode: PatchMode.Replace);
-                        //Static Tree 1
-                        source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/_sc_blank_tilesheet");
-                        editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(48, 96, 48, 96), patchMode: PatchMode.Replace);
-                        source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TerrainFeatures/tree1_fall");
-                        editor.PatchImage(source, sourceArea: new Rectangle(32, 96, 16, 32), targetArea: new Rectangle(64, 160, 16, 32), patchMode: PatchMode.Replace);
-                        editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(48, 96, 48, 96), patchMode: PatchMode.Overlay);
-                        //Static Tree 2
-                        source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/_sc_blank_tilesheet");
-                        editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(48, 192, 48, 96), patchMode: PatchMode.Replace);
-                        source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TerrainFeatures/tree2_fall");
-                        editor.PatchImage(source, sourceArea: new Rectangle(32, 96, 16, 32), targetArea: new Rectangle(64, 256, 16, 32), patchMode: PatchMode.Replace);
-                        editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(48, 192, 48, 96), patchMode: PatchMode.Overlay);
-                        //Static Tree 3
-                        source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/_sc_blank_tilesheet");
-                        editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(48, 288, 48, 96), patchMode: PatchMode.Replace);
-                        source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TerrainFeatures/tree3_fall");
-                        editor.PatchImage(source, sourceArea: new Rectangle(32, 96, 16, 32), targetArea: new Rectangle(64, 352, 16, 32), patchMode: PatchMode.Replace);
-                        editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(48, 288, 48, 96), patchMode: PatchMode.Overlay);
-                        //Static Tree 8
-                        source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/_sc_blank_tilesheet");
-                        editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(48, 384, 48, 96), patchMode: PatchMode.Replace);
-                        source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TerrainFeatures/tree8_fall");
-                        editor.PatchImage(source, sourceArea: new Rectangle(32, 96, 16, 32), targetArea: new Rectangle(64, 448, 16, 32), patchMode: PatchMode.Replace);
-                        editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(48, 384, 48, 96), patchMode: PatchMode.Overlay);
-                        //Dinamic Trees
-                        if (Utility.doesAnyFarmerHaveMail("nmTreeGrowCounter_4"))
-                        {
-                            // Fruit Trees
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TileSheets/fruitTrees");
-                            editor.PatchImage(source, sourceArea: new Rectangle(288, 0, 48, 720), targetArea: new Rectangle(144, 96, 48, 720), patchMode: PatchMode.Replace);
-                            //Tree 1 
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/_sc_blank_tilesheet");
-                            editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(192, 96, 48, 96), patchMode: PatchMode.Replace);
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TerrainFeatures/tree1_fall");
-                            editor.PatchImage(source, sourceArea: new Rectangle(32, 96, 16, 32), targetArea: new Rectangle(208, 160, 16, 32), patchMode: PatchMode.Replace);
-                            editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(192, 96, 48, 96), patchMode: PatchMode.Overlay);
-                            //Tree2
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/_sc_blank_tilesheet");
-                            editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(192, 192, 48, 96), patchMode: PatchMode.Replace);
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TerrainFeatures/tree2_fall");
-                            editor.PatchImage(source, sourceArea: new Rectangle(32, 96, 16, 32), targetArea: new Rectangle(208, 256, 16, 32), patchMode: PatchMode.Replace);
-                            editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(192, 192, 48, 96), patchMode: PatchMode.Overlay);
-                            //Tree 3
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/_sc_blank_tilesheet");
-                            editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(192, 288, 48, 96), patchMode: PatchMode.Replace);
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TerrainFeatures/tree3_fall");
-                            editor.PatchImage(source, sourceArea: new Rectangle(32, 96, 16, 32), targetArea: new Rectangle(208, 352, 16, 32), patchMode: PatchMode.Replace);
-                            editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(192, 288, 48, 96), patchMode: PatchMode.Overlay);
-                            //Tree 8
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/_sc_blank_tilesheet");
-                            editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(192, 384, 48, 96), patchMode: PatchMode.Replace);
-                            source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TerrainFeatures/tree8_fall");
-                            editor.PatchImage(source, sourceArea: new Rectangle(32, 96, 16, 32), targetArea: new Rectangle(208, 448, 16, 32), patchMode: PatchMode.Replace);
-                            editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 48, 96), targetArea: new Rectangle(192, 384, 48, 96), patchMode: PatchMode.Overlay);
-                        }
                     }
                     if (Game1.currentSeason.Equals("winter"))
                     {
@@ -2018,7 +1683,7 @@ namespace __SomaCore.Managers
                 });
             }
         }
-        internal void OnAssetRequested_ConfigInteriorsTilesheets(object sender, AssetRequestedEventArgs e)
+        internal void OnAssetRequested_ConfigDinamicInteriorsTilesheets(object sender, AssetRequestedEventArgs e)
         {
             if (e.NameWithoutLocale.IsEquivalentTo("Maps/_sc_dinamic_interiors"))
             {
@@ -2026,7 +1691,7 @@ namespace __SomaCore.Managers
                 {
                     var editor = asset.AsImage();
                     Texture2D source;
-                    //Walls and floors
+                    //Wallspapers
                     source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/walls_and_floors");
                     editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 256, 45), targetArea: new Rectangle(0, 3, 256, 45), patchMode: PatchMode.Replace);
                     editor.PatchImage(source, sourceArea: new Rectangle(0, 48, 256, 45), targetArea: new Rectangle(0, 51, 256, 45), patchMode: PatchMode.Replace);
@@ -2045,14 +1710,39 @@ namespace __SomaCore.Managers
                     editor.PatchImage(source, sourceArea: new Rectangle(160, 336, 32, 224), targetArea: new Rectangle(256, 1152, 32, 224), patchMode: PatchMode.Replace);
                     editor.PatchImage(source, sourceArea: new Rectangle(192, 336, 32, 224), targetArea: new Rectangle(256, 1376, 32, 224), patchMode: PatchMode.Replace);
                     editor.PatchImage(source, sourceArea: new Rectangle(224, 336, 32, 224), targetArea: new Rectangle(256, 1600, 32, 224), patchMode: PatchMode.Replace);
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                     //Wall decorations
                     source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TileSheets/furniture");
+                    //1
                     editor.PatchImage(source, sourceArea: new Rectangle(48, 768, 96, 32), targetArea: new Rectangle(0, 339, 96, 32), patchMode: PatchMode.Replace);
-                    editor.PatchImage(source, sourceArea: new Rectangle(48, 768, 32, 32), targetArea: new Rectangle(97, 339, 32, 32), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(144, 768, 32, 32), targetArea: new Rectangle(97, 339, 32, 32), patchMode: PatchMode.Replace);
                     editor.PatchImage(source, sourceArea: new Rectangle(176, 768, 48, 32), targetArea: new Rectangle(128, 339, 48, 32), patchMode: PatchMode.Replace);
                     editor.PatchImage(source, sourceArea: new Rectangle(224, 768, 64, 32), targetArea: new Rectangle(176, 340, 64, 32), patchMode: PatchMode.Replace);
                     editor.PatchImage(source, sourceArea: new Rectangle(496, 768, 16, 32), targetArea: new Rectangle(240, 340, 16, 32), patchMode: PatchMode.Replace);
-
+                    //2
                     editor.PatchImage(source, sourceArea: new Rectangle(288, 768, 48, 32), targetArea: new Rectangle(0, 388, 48, 32), patchMode: PatchMode.Replace);
                     editor.PatchImage(source, sourceArea: new Rectangle(336, 768, 32, 32), targetArea: new Rectangle(48, 389, 32, 32), patchMode: PatchMode.Replace);
                     editor.PatchImage(source, sourceArea: new Rectangle(368, 768, 32, 32), targetArea: new Rectangle(80, 386, 32, 32), patchMode: PatchMode.Replace);
@@ -2061,7 +1751,7 @@ namespace __SomaCore.Managers
                     editor.PatchImage(source, sourceArea: new Rectangle(0, 800, 16, 32), targetArea: new Rectangle(208, 384, 16, 32), patchMode: PatchMode.Replace);
                     editor.PatchImage(source, sourceArea: new Rectangle(16, 800, 16, 32), targetArea: new Rectangle(224, 382, 16, 32), patchMode: PatchMode.Replace);
                     editor.PatchImage(source, sourceArea: new Rectangle(16, 800, 16, 32), targetArea: new Rectangle(240, 386, 16, 32), patchMode: PatchMode.Replace);
-
+                    //3
                     editor.PatchImage(source, sourceArea: new Rectangle(48, 800, 16, 32), targetArea: new Rectangle(0, 426, 16, 32), patchMode: PatchMode.Replace);
                     editor.PatchImage(source, sourceArea: new Rectangle(64, 800, 16, 32), targetArea: new Rectangle(16, 430, 16, 32), patchMode: PatchMode.Replace);
                     editor.PatchImage(source, sourceArea: new Rectangle(80, 800, 16, 32), targetArea: new Rectangle(31, 434, 16, 32), patchMode: PatchMode.Replace);
@@ -2071,7 +1761,7 @@ namespace __SomaCore.Managers
                     editor.PatchImage(source, sourceArea: new Rectangle(176, 832, 16, 32), targetArea: new Rectangle(176, 434, 16, 32), patchMode: PatchMode.Replace);
                     editor.PatchImage(source, sourceArea: new Rectangle(192, 832, 32, 32), targetArea: new Rectangle(192, 433, 32, 32), patchMode: PatchMode.Replace);
                     editor.PatchImage(source, sourceArea: new Rectangle(368, 832, 32, 32), targetArea: new Rectangle(224, 434, 32, 32), patchMode: PatchMode.Replace);
-
+                    //4
                     editor.PatchImage(source, sourceArea: new Rectangle(320, 832, 16, 32), targetArea: new Rectangle(0, 483, 16, 32), patchMode: PatchMode.Replace);
                     editor.PatchImage(source, sourceArea: new Rectangle(448, 832, 32, 32), targetArea: new Rectangle(16, 480, 32, 32), patchMode: PatchMode.Replace);
                     editor.PatchImage(source, sourceArea: new Rectangle(272, 864, 32, 16), targetArea: new Rectangle(48, 486, 32, 16), patchMode: PatchMode.Replace);
@@ -2079,29 +1769,99 @@ namespace __SomaCore.Managers
                     editor.PatchImage(source, sourceArea: new Rectangle(320, 896, 32, 16), targetArea: new Rectangle(96, 485, 32, 16), patchMode: PatchMode.Replace);
                     editor.PatchImage(source, sourceArea: new Rectangle(352, 896, 16, 16), targetArea: new Rectangle(128, 486, 16, 16), patchMode: PatchMode.Replace);
                     editor.PatchImage(source, sourceArea: new Rectangle(400, 864, 32, 32), targetArea: new Rectangle(144, 484, 32, 32), patchMode: PatchMode.Replace);
-                    editor.PatchImage(source, sourceArea: new Rectangle(400, 896, 80, 16), targetArea: new Rectangle(176, 486, 80, 16), patchMode: PatchMode.Replace);
-
+                    editor.PatchImage(source, sourceArea: new Rectangle(400, 896, 80, 16), targetArea: new Rectangle(176, 483, 80, 16), patchMode: PatchMode.Replace);
+                    //5
                     editor.PatchImage(source, sourceArea: new Rectangle(160, 896, 32, 32), targetArea: new Rectangle(0, 530, 32, 32), patchMode: PatchMode.Replace);
                     editor.PatchImage(source, sourceArea: new Rectangle(224, 912, 224, 32), targetArea: new Rectangle(32, 528, 224, 32), patchMode: PatchMode.Replace);
-
+                    //6
                     editor.PatchImage(source, sourceArea: new Rectangle(448, 912, 64, 32), targetArea: new Rectangle(0, 576, 64, 32), patchMode: PatchMode.Replace);
-                    editor.PatchImage(source, sourceArea: new Rectangle(0, 976, 128, 32), targetArea: new Rectangle(0, 576, 128, 32), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(0, 976, 128, 32), targetArea: new Rectangle(64, 576, 128, 32), patchMode: PatchMode.Replace);
                     editor.PatchImage(source, sourceArea: new Rectangle(128, 976, 32, 32), targetArea: new Rectangle(192, 582, 32, 32), patchMode: PatchMode.Replace);
                     editor.PatchImage(source, sourceArea: new Rectangle(192, 944, 32, 32), targetArea: new Rectangle(224, 576, 32, 32), patchMode: PatchMode.Replace);
-
-
-
-
-
-
-
-
-
-
+                    //7
+                    editor.PatchImage(source, sourceArea: new Rectangle(304, 944, 32, 32), targetArea: new Rectangle(0, 628, 32, 32), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(416, 944, 48, 32), targetArea: new Rectangle(32, 629, 48, 32), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(464, 944, 32, 32), targetArea: new Rectangle(80, 629, 32, 32), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(336, 976, 16, 48), targetArea: new Rectangle(112, 627, 16, 48), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(352, 976, 16, 48), targetArea: new Rectangle(128, 627, 16, 48), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(400, 1152, 32, 32), targetArea: new Rectangle(144, 630, 32, 32), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(480, 1152, 32, 32), targetArea: new Rectangle(176, 630, 32, 32), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(400, 1184, 32, 16), targetArea: new Rectangle(208, 630, 32, 16), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(288, 1200, 16, 32), targetArea: new Rectangle(240, 622, 16, 32), patchMode: PatchMode.Replace);
+                    //8
+                    editor.PatchImage(source, sourceArea: new Rectangle(304, 1200, 32, 32), targetArea: new Rectangle(0, 677, 32, 32), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(336, 1200, 32, 32), targetArea: new Rectangle(32, 675, 32, 32), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(368, 1200, 32, 32), targetArea: new Rectangle(64, 672, 32, 32), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(400, 1200, 32, 32), targetArea: new Rectangle(96, 675, 32, 32), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(400, 1200, 32, 32), targetArea: new Rectangle(96, 675, 32, 32), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(384, 1280, 64, 32), targetArea: new Rectangle(128, 676, 64, 32), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(48, 1312, 64, 48), targetArea: new Rectangle(192, 675, 64, 48), patchMode: PatchMode.Replace);
+                    //9
+                    editor.PatchImage(source, sourceArea: new Rectangle(112, 1312, 16, 48), targetArea: new Rectangle(0, 723, 16, 48), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(144, 1312, 16, 48), targetArea: new Rectangle(16, 723, 16, 48), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(176, 1312, 32, 48), targetArea: new Rectangle(32, 720, 32, 48), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(480, 1312, 32, 48), targetArea: new Rectangle(64, 723, 32, 48), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(160, 1360, 32, 32), targetArea: new Rectangle(96, 721, 32, 32), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(192, 1360, 32, 32), targetArea: new Rectangle(128, 726, 32, 32), patchMode: PatchMode.Replace);
                     source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/townInterior");
-                    
+                    editor.PatchImage(source, sourceArea: new Rectangle(240, 80, 32, 16), targetArea: new Rectangle(160, 725, 32, 16), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(272, 80, 16, 16), targetArea: new Rectangle(192, 722, 16, 16), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(240, 96, 32, 16), targetArea: new Rectangle(208, 726, 32, 16), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(272, 96, 16, 16), targetArea: new Rectangle(240, 721, 16, 16), patchMode: PatchMode.Replace);
+                    //10
+                    editor.PatchImage(source, sourceArea: new Rectangle(288, 80, 32, 32), targetArea: new Rectangle(0, 789, 32, 32), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(240, 112, 64, 32), targetArea: new Rectangle(32, 789, 64, 32), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(304, 112, 32, 32), targetArea: new Rectangle(96, 786, 32, 32), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(320, 112, 32, 32), targetArea: new Rectangle(96, 786, 32, 32), patchMode: PatchMode.Replace);
 
 
+
+
+
+                });
+            }
+        }
+        internal void OnAssetRequested_ConfigBuildingSetTilesheets(object sender, AssetRequestedEventArgs e)
+        {
+            if (e.NameWithoutLocale.IsEquivalentTo("Maps/_sc_building_set"))
+            {
+                e.Edit(asset =>
+                {
+                    var editor = asset.AsImage();
+                    Texture2D source;
+                    //Wallspapers and Floors
+                    source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/walls_and_floors");
+                    editor.PatchImage(source, sourceArea: new Rectangle(0, 42, 256, 3), targetArea: new Rectangle(0, 176, 256, 3), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 256, 45), targetArea: new Rectangle(0, 179, 256, 45), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(0, 90, 256, 3), targetArea: new Rectangle(0, 240, 256, 3), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(0, 48, 256, 45), targetArea: new Rectangle(0, 243, 256, 45), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(0, 138, 256, 3), targetArea: new Rectangle(0, 304, 256, 3), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(0, 96, 256, 45), targetArea: new Rectangle(0, 307, 256, 45), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(0, 186, 256, 3), targetArea: new Rectangle(0, 368, 256, 3), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(0, 144, 256, 45), targetArea: new Rectangle(0, 371, 256, 45), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(0, 234, 256, 3), targetArea: new Rectangle(0, 432, 256, 3), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(0, 192, 256, 45), targetArea: new Rectangle(0, 435, 256, 45), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(0, 282, 256, 3), targetArea: new Rectangle(0, 496, 256, 3), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(0, 240, 256, 45), targetArea: new Rectangle(0, 499, 256, 45), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(0, 330, 256, 3), targetArea: new Rectangle(0, 560, 256, 3), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(0, 288, 256, 45), targetArea: new Rectangle(0, 563, 256, 45), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(0, 336, 256, 224), targetArea: new Rectangle(0, 624, 256, 224), patchMode: PatchMode.Replace);
+                    //Windows
+                    source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TileSheets/furniture");
+                    editor.PatchImage(source, sourceArea: new Rectangle(224, 803, 32, 29), targetArea: new Rectangle(256, 179, 32, 29), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(256, 802, 32, 29), targetArea: new Rectangle(256, 244, 32, 29), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(288, 832, 32, 32), targetArea: new Rectangle(256, 310, 32, 32), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(336, 864, 32, 32), targetArea: new Rectangle(256, 370, 32, 32), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(144, 832, 32, 32), targetArea: new Rectangle(256, 434, 32, 32), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(224, 832, 32, 32), targetArea: new Rectangle(256, 691, 32, 32), patchMode: PatchMode.Replace);
+                    source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/townInterior");
+                    editor.PatchImage(source, sourceArea: new Rectangle(128, 608, 16, 16), targetArea: new Rectangle(256, 502, 16, 16), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(64, 624, 16, 16), targetArea: new Rectangle(272, 502, 16, 16), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(336, 192, 32, 16), targetArea: new Rectangle(256, 564, 32, 16), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(64, 608, 32, 16), targetArea: new Rectangle(256, 628, 32, 16), patchMode: PatchMode.Replace);
+
+                    editor.PatchImage(source, sourceArea: new Rectangle(336, 224, 16, 32), targetArea: new Rectangle(256, 662, 16, 32), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(48, 608, 16, 32), targetArea: new Rectangle(272, 662, 16, 32), patchMode: PatchMode.Replace);
 
 
 
@@ -2114,8 +1874,10 @@ namespace __SomaCore.Managers
         }
         internal void OnDayStarted_ReloadTilesheets(object sender, DayStartedEventArgs e)
         {
-            ModEntry.ModHelper.GameContent.InvalidateCache("Maps/_sc_dinamic_plants");
+            ModEntry.ModHelper.GameContent.InvalidateCache("Maps/_sc_dinamic_crops");
             ModEntry.ModHelper.GameContent.InvalidateCache("Maps/_sc_dinamic_interiors");
+            ModEntry.ModHelper.GameContent.InvalidateCache("Maps/_sc_building_set");
         }
+        
     }
 }

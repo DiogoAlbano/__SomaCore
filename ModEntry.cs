@@ -25,8 +25,9 @@ namespace __SomaCore
 
             helper.Events.GameLoop.GameLaunched += setGMCM.OnGameLaunched_InicializeGMCM;
 
-            helper.Events.Content.AssetRequested += tileSheetsManager.OnAssetRequested_ConfigPlantsTilesheets;
-            helper.Events.Content.AssetRequested += tileSheetsManager.OnAssetRequested_ConfigInteriorsTilesheets;
+            helper.Events.Content.AssetRequested += tileSheetsManager.OnAssetRequested_ConfigDinamicCropsTilesheets;          
+            helper.Events.Content.AssetRequested += tileSheetsManager.OnAssetRequested_ConfigBuildingSetTilesheets;
+            helper.Events.Content.AssetRequested += tileSheetsManager.OnAssetRequested_ConfigDinamicInteriorsTilesheets;
             helper.Events.GameLoop.DayStarted += tileSheetsManager.OnDayStarted_ReloadTilesheets;
 
             helper.Events.Content.AssetRequested += flagsManager.OnAssetRequested_CreateFlags;
