@@ -1868,8 +1868,25 @@ namespace __SomaCore.Managers
                     editor.PatchImage(source, sourceArea: new Rectangle(16, 496, 16, 16), targetArea: new Rectangle(224, 934, 16, 16), patchMode: PatchMode.Replace);
                     editor.PatchImage(source, sourceArea: new Rectangle(116, 517, 11, 15), targetArea: new Rectangle(243, 934, 11, 15), patchMode: PatchMode.Replace);
                     //15
-
-
+                    editor.PatchImage(source, sourceArea: new Rectangle(126, 514, 14, 15), targetArea: new Rectangle(1, 966, 14, 15), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(146, 565, 7, 11), targetArea: new Rectangle(21, 966, 7, 11), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(167, 566, 7, 6), targetArea: new Rectangle(52, 966, 7, 6), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(147, 626, 11, 13), targetArea: new Rectangle(66, 966, 11, 13), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(178, 691, 13, 11), targetArea: new Rectangle(81, 966, 13, 11), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(272, 657, 30, 25), targetArea: new Rectangle(97, 966, 30, 25), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(321, 528, 31, 16), targetArea: new Rectangle(129, 966, 31, 16), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(320, 546, 16, 14), targetArea: new Rectangle(160, 966, 16, 14), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(354, 594, 10, 12), targetArea: new Rectangle(179, 966, 10, 12), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(336, 773, 32, 11), targetArea: new Rectangle(192, 966, 32, 11), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(320, 736, 16, 16), targetArea: new Rectangle(224, 966, 16, 16), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(336, 737, 15, 13), targetArea: new Rectangle(240, 966, 15, 13), patchMode: PatchMode.Replace);
+                    //16
+                    editor.PatchImage(source, sourceArea: new Rectangle(16, 1008, 80, 16), targetArea: new Rectangle(0, 998, 80, 16), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(195, 946, 27, 12), targetArea: new Rectangle(83, 998, 27, 12), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(195, 962, 27, 12), targetArea: new Rectangle(115, 998, 27, 12), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(195, 978, 27, 12), targetArea: new Rectangle(147, 998, 27, 12), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(387, 800, 11, 11), targetArea: new Rectangle(179, 998, 11, 11), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(352, 784, 16, 29), targetArea: new Rectangle(192, 998, 16, 29), patchMode: PatchMode.Replace);
 
 
 
