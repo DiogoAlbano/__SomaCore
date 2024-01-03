@@ -1701,12 +1701,14 @@ namespace __SomaCore.Managers
                     editor.PatchImage(source, sourceArea: new Rectangle(256, 32, 256, 32), targetArea: new Rectangle(0, 96, 256, 32), patchMode: PatchMode.Replace);
                     editor.PatchImage(source, sourceArea: new Rectangle(0, 64, 144, 32), targetArea: new Rectangle(0, 128, 144, 32), patchMode: PatchMode.Replace);
                     editor.PatchImage(source, sourceArea: new Rectangle(0, 64, 144, 32), targetArea: new Rectangle(0, 128, 144, 32), patchMode: PatchMode.Replace);
-                    //Small tables
+                    // tables
                     editor.PatchImage(source, sourceArea: new Rectangle(240, 688, 112, 32), targetArea: new Rectangle(144, 128, 112, 32), patchMode: PatchMode.Replace);
                     editor.PatchImage(source, sourceArea: new Rectangle(352, 688, 64, 32), targetArea: new Rectangle(0, 160, 64, 32), patchMode: PatchMode.Replace);
-                    //Medium tables
                     editor.PatchImage(source, sourceArea: new Rectangle(0, 608, 192, 32), targetArea: new Rectangle(64, 160, 192, 32), patchMode: PatchMode.Replace);
                     editor.PatchImage(source, sourceArea: new Rectangle(0, 560, 256, 48), targetArea: new Rectangle(0, 192, 256, 48), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(0, 400, 224, 80), targetArea: new Rectangle(0, 1168, 224, 80), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(224, 400, 224, 80), targetArea: new Rectangle(0, 1264, 224, 80), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(288, 560, 224, 48), targetArea: new Rectangle(0, 1360, 224, 48), patchMode: PatchMode.Replace);
                     //Dressers
                     editor.PatchImage(source, sourceArea: new Rectangle(0, 352, 240, 48), targetArea: new Rectangle(0, 240, 240, 48), patchMode: PatchMode.Replace);
                     editor.PatchImage(source, sourceArea: new Rectangle(240, 352, 176, 48), targetArea: new Rectangle(0, 288, 176, 48), patchMode: PatchMode.Replace);
@@ -1878,11 +1880,13 @@ namespace __SomaCore.Managers
                     editor.PatchImage(source, sourceArea: new Rectangle(480, 864, 32, 48), targetArea: new Rectangle(160, 1040, 32, 48), patchMode: PatchMode.Replace);
                     editor.PatchImage(source, sourceArea: new Rectangle(464, 1184, 16, 32), targetArea: new Rectangle(192, 1056, 16, 32), patchMode: PatchMode.Replace);
                     editor.PatchImage(source, sourceArea: new Rectangle(432, 1152, 16, 32), targetArea: new Rectangle(208, 1056, 16, 32), patchMode: PatchMode.Replace);
-                    // wall lights
                     editor.PatchImage(source, sourceArea: new Rectangle(224, 1360, 128, 32), targetArea: new Rectangle(0, 1115, 128, 32), patchMode: PatchMode.Replace);
                     editor.PatchImage(source, sourceArea: new Rectangle(448, 1360, 32, 32), targetArea: new Rectangle(128, 1123, 32, 32), patchMode: PatchMode.Replace);
                     editor.PatchImage(source, sourceArea: new Rectangle(448, 1392, 32, 32), targetArea: new Rectangle(160, 1123, 32, 32), patchMode: PatchMode.Replace);
                     editor.PatchImage(source, sourceArea: new Rectangle(480, 1360, 32, 32), targetArea: new Rectangle(192, 1114, 32, 32), patchMode: PatchMode.Replace);
+                    //shelfs
+
+                    
 
                 });
             }
