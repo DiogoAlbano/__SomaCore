@@ -1683,6 +1683,49 @@ namespace __SomaCore.Managers
                 });
             }
         }
+        internal void OnAssetRequested_ConfigBuildingSetTilesheets(object sender, AssetRequestedEventArgs e)
+        {
+            if (e.NameWithoutLocale.IsEquivalentTo("Maps/_sc_building_set"))
+            {
+                e.Edit(asset =>
+                {
+                    var editor = asset.AsImage();
+                    Texture2D source;
+                    //Wallspapers and Floors
+                    source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/walls_and_floors");
+                    editor.PatchImage(source, sourceArea: new Rectangle(0, 42, 256, 3), targetArea: new Rectangle(0, 176, 256, 3), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 256, 45), targetArea: new Rectangle(0, 179, 256, 45), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(0, 90, 256, 3), targetArea: new Rectangle(0, 240, 256, 3), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(0, 48, 256, 45), targetArea: new Rectangle(0, 243, 256, 45), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(0, 138, 256, 3), targetArea: new Rectangle(0, 304, 256, 3), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(0, 96, 256, 45), targetArea: new Rectangle(0, 307, 256, 45), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(0, 186, 256, 3), targetArea: new Rectangle(0, 368, 256, 3), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(0, 144, 256, 45), targetArea: new Rectangle(0, 371, 256, 45), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(0, 234, 256, 3), targetArea: new Rectangle(0, 432, 256, 3), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(0, 192, 256, 45), targetArea: new Rectangle(0, 435, 256, 45), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(0, 282, 256, 3), targetArea: new Rectangle(0, 496, 256, 3), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(0, 240, 256, 45), targetArea: new Rectangle(0, 499, 256, 45), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(0, 330, 256, 3), targetArea: new Rectangle(0, 560, 256, 3), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(0, 288, 256, 45), targetArea: new Rectangle(0, 563, 256, 45), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(0, 336, 256, 224), targetArea: new Rectangle(0, 624, 256, 224), patchMode: PatchMode.Replace);
+                    //Windows
+                    source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TileSheets/furniture");
+                    editor.PatchImage(source, sourceArea: new Rectangle(224, 803, 32, 29), targetArea: new Rectangle(256, 179, 32, 29), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(256, 802, 32, 29), targetArea: new Rectangle(256, 244, 32, 29), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(288, 832, 32, 32), targetArea: new Rectangle(256, 310, 32, 32), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(336, 864, 32, 32), targetArea: new Rectangle(256, 370, 32, 32), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(144, 832, 32, 32), targetArea: new Rectangle(256, 434, 32, 32), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(224, 832, 32, 32), targetArea: new Rectangle(256, 691, 32, 32), patchMode: PatchMode.Replace);
+                    source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/townInterior");
+                    editor.PatchImage(source, sourceArea: new Rectangle(128, 608, 16, 16), targetArea: new Rectangle(256, 502, 16, 16), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(64, 624, 16, 16), targetArea: new Rectangle(272, 502, 16, 16), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(336, 192, 32, 16), targetArea: new Rectangle(256, 564, 32, 16), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(64, 608, 32, 16), targetArea: new Rectangle(256, 628, 32, 16), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(336, 224, 16, 32), targetArea: new Rectangle(256, 662, 16, 32), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(48, 608, 16, 32), targetArea: new Rectangle(272, 662, 16, 32), patchMode: PatchMode.Replace);
+                });
+            }
+        }
         internal void OnAssetRequested_ConfigDinamicInteriorsTilesheets(object sender, AssetRequestedEventArgs e)
         {
             if (e.NameWithoutLocale.IsEquivalentTo("Maps/_sc_dinamic_interiors"))
@@ -1977,9 +2020,22 @@ namespace __SomaCore.Managers
                     editor.PatchImage(source, sourceArea: new Rectangle(96, 896, 32, 80), targetArea: new Rectangle(256, 336, 32, 80), patchMode: PatchMode.Replace);
                     editor.PatchImage(source, sourceArea: new Rectangle(128, 896, 32, 80), targetArea: new Rectangle(256, 432, 32, 80), patchMode: PatchMode.Replace);
                     editor.PatchImage(source, sourceArea: new Rectangle(160, 928, 32, 80), targetArea: new Rectangle(256, 528, 32, 80), patchMode: PatchMode.Replace);
-
-
-
+                    //misc
+                    editor.PatchImage(source, sourceArea: new Rectangle(432, 672, 32, 48), targetArea: new Rectangle(256, 624, 32, 48), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(464, 672, 32, 48), targetArea: new Rectangle(256, 688, 32, 48), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(112, 832, 32, 64), targetArea: new Rectangle(256, 752, 32, 64), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(80, 832, 32, 32), targetArea: new Rectangle(256, 832, 32, 32), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(80, 864, 32, 32), targetArea: new Rectangle(256, 880, 32, 32), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(416, 722, 31, 46), targetArea: new Rectangle(256, 926, 31, 46), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(368, 768, 32, 29), targetArea: new Rectangle(256, 995, 32, 29), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(304, 976, 32, 48), targetArea: new Rectangle(256, 1040, 32, 48), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(448, 1152, 32, 32), targetArea: new Rectangle(256, 1104, 32, 32), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(480, 1184, 16, 32), targetArea: new Rectangle(224, 1056, 16, 32), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(432, 1200, 16, 32), targetArea: new Rectangle(208, 992, 16, 32), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(160, 1328, 16, 32), targetArea: new Rectangle(224, 992, 16, 32), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(288, 640, 16, 32), targetArea: new Rectangle(240, 992, 16, 32), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(304, 640, 16, 32), targetArea: new Rectangle(240, 1056, 16, 32), patchMode: PatchMode.Replace);
+                    editor.PatchImage(source, sourceArea: new Rectangle(288, 672, 32, 16), targetArea: new Rectangle(224, 1120, 32, 16), patchMode: PatchMode.Replace);
 
 
 
@@ -1988,49 +2044,7 @@ namespace __SomaCore.Managers
                 });
             }
         }
-        internal void OnAssetRequested_ConfigBuildingSetTilesheets(object sender, AssetRequestedEventArgs e)
-        {
-            if (e.NameWithoutLocale.IsEquivalentTo("Maps/_sc_building_set"))
-            {
-                e.Edit(asset =>
-                {
-                    var editor = asset.AsImage();
-                    Texture2D source;
-                    //Wallspapers and Floors
-                    source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/walls_and_floors");
-                    editor.PatchImage(source, sourceArea: new Rectangle(0, 42, 256, 3), targetArea: new Rectangle(0, 176, 256, 3), patchMode: PatchMode.Replace);
-                    editor.PatchImage(source, sourceArea: new Rectangle(0, 0, 256, 45), targetArea: new Rectangle(0, 179, 256, 45), patchMode: PatchMode.Replace);
-                    editor.PatchImage(source, sourceArea: new Rectangle(0, 90, 256, 3), targetArea: new Rectangle(0, 240, 256, 3), patchMode: PatchMode.Replace);
-                    editor.PatchImage(source, sourceArea: new Rectangle(0, 48, 256, 45), targetArea: new Rectangle(0, 243, 256, 45), patchMode: PatchMode.Replace);
-                    editor.PatchImage(source, sourceArea: new Rectangle(0, 138, 256, 3), targetArea: new Rectangle(0, 304, 256, 3), patchMode: PatchMode.Replace);
-                    editor.PatchImage(source, sourceArea: new Rectangle(0, 96, 256, 45), targetArea: new Rectangle(0, 307, 256, 45), patchMode: PatchMode.Replace);
-                    editor.PatchImage(source, sourceArea: new Rectangle(0, 186, 256, 3), targetArea: new Rectangle(0, 368, 256, 3), patchMode: PatchMode.Replace);
-                    editor.PatchImage(source, sourceArea: new Rectangle(0, 144, 256, 45), targetArea: new Rectangle(0, 371, 256, 45), patchMode: PatchMode.Replace);
-                    editor.PatchImage(source, sourceArea: new Rectangle(0, 234, 256, 3), targetArea: new Rectangle(0, 432, 256, 3), patchMode: PatchMode.Replace);
-                    editor.PatchImage(source, sourceArea: new Rectangle(0, 192, 256, 45), targetArea: new Rectangle(0, 435, 256, 45), patchMode: PatchMode.Replace);
-                    editor.PatchImage(source, sourceArea: new Rectangle(0, 282, 256, 3), targetArea: new Rectangle(0, 496, 256, 3), patchMode: PatchMode.Replace);
-                    editor.PatchImage(source, sourceArea: new Rectangle(0, 240, 256, 45), targetArea: new Rectangle(0, 499, 256, 45), patchMode: PatchMode.Replace);
-                    editor.PatchImage(source, sourceArea: new Rectangle(0, 330, 256, 3), targetArea: new Rectangle(0, 560, 256, 3), patchMode: PatchMode.Replace);
-                    editor.PatchImage(source, sourceArea: new Rectangle(0, 288, 256, 45), targetArea: new Rectangle(0, 563, 256, 45), patchMode: PatchMode.Replace);
-                    editor.PatchImage(source, sourceArea: new Rectangle(0, 336, 256, 224), targetArea: new Rectangle(0, 624, 256, 224), patchMode: PatchMode.Replace);
-                    //Windows
-                    source = ModEntry.ModHelper.GameContent.Load<Texture2D>("TileSheets/furniture");
-                    editor.PatchImage(source, sourceArea: new Rectangle(224, 803, 32, 29), targetArea: new Rectangle(256, 179, 32, 29), patchMode: PatchMode.Replace);
-                    editor.PatchImage(source, sourceArea: new Rectangle(256, 802, 32, 29), targetArea: new Rectangle(256, 244, 32, 29), patchMode: PatchMode.Replace);
-                    editor.PatchImage(source, sourceArea: new Rectangle(288, 832, 32, 32), targetArea: new Rectangle(256, 310, 32, 32), patchMode: PatchMode.Replace);
-                    editor.PatchImage(source, sourceArea: new Rectangle(336, 864, 32, 32), targetArea: new Rectangle(256, 370, 32, 32), patchMode: PatchMode.Replace);
-                    editor.PatchImage(source, sourceArea: new Rectangle(144, 832, 32, 32), targetArea: new Rectangle(256, 434, 32, 32), patchMode: PatchMode.Replace);
-                    editor.PatchImage(source, sourceArea: new Rectangle(224, 832, 32, 32), targetArea: new Rectangle(256, 691, 32, 32), patchMode: PatchMode.Replace);
-                    source = ModEntry.ModHelper.GameContent.Load<Texture2D>("Maps/townInterior");
-                    editor.PatchImage(source, sourceArea: new Rectangle(128, 608, 16, 16), targetArea: new Rectangle(256, 502, 16, 16), patchMode: PatchMode.Replace);
-                    editor.PatchImage(source, sourceArea: new Rectangle(64, 624, 16, 16), targetArea: new Rectangle(272, 502, 16, 16), patchMode: PatchMode.Replace);
-                    editor.PatchImage(source, sourceArea: new Rectangle(336, 192, 32, 16), targetArea: new Rectangle(256, 564, 32, 16), patchMode: PatchMode.Replace);
-                    editor.PatchImage(source, sourceArea: new Rectangle(64, 608, 32, 16), targetArea: new Rectangle(256, 628, 32, 16), patchMode: PatchMode.Replace);
-                    editor.PatchImage(source, sourceArea: new Rectangle(336, 224, 16, 32), targetArea: new Rectangle(256, 662, 16, 32), patchMode: PatchMode.Replace);
-                    editor.PatchImage(source, sourceArea: new Rectangle(48, 608, 16, 32), targetArea: new Rectangle(272, 662, 16, 32), patchMode: PatchMode.Replace);
-                });
-            }
-        }
+        
         internal void OnDayStarted_ReloadTilesheets(object sender, DayStartedEventArgs e)
         {
             ModEntry.ModHelper.GameContent.InvalidateCache("Maps/_sc_dinamic_crops");
